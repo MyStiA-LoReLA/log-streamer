@@ -46,4 +46,14 @@ Tested on a multi-core local machine environment, parsing **1,000,000 lines (~90
 ```bash
 git clone https://github.com/MyStiA-LoReLA/log-streamer.git
 cd log-streamer
+```
+
+2. Run the mock log generator to create 1,000,000 lines of standard Nginx logs (occupies only ~90MB disk space):
+```bash
+python gen_logs.py
+```
+3.Launch the core streaming parser to witness the blazing fast multi-processing throughput:
+```bash
+python log_parser.py nginx_access.log 20
+```
 
