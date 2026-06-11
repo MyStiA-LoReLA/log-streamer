@@ -14,13 +14,13 @@ This project is engineered to process multi-gigabyte, billion-line Nginx/Envoy a
 
 
 
-* **`mmap` Zero-Copy Streaming**: Completely bypasses Python's traditional `readline` buffer. By mapping the disk file directly into the virtual memory space (`mmap.ACCESS\_READ`), it achieves kernel-level page cache slicing for ultimate read speed.
+* **`mmap` Zero-Copy Streaming**: Completely bypasses Python's traditional `readline` buffer. By mapping the disk file directly into the virtual memory space (`mmap.ACCESS_READ`), it achieves kernel-level page cache slicing for ultimate read speed.
 
 * **Constant $O(1)$ Memory Footprint**: Keeps heap memory usage strictly below 20MB, regardless of whether the log file is 100MB or 100GB. The memory graph remains a perfectly flat line.
 
 * **Regex-Free Byte Slicing**: Rejects slow regular expressions. It utilizes fixed-position binary byte slicing (`Byte Slicing`) to extract time windows in constant time, minimizing CPU overhead per core.
 
-* **Reverse Seek Line Alignment**: Implements a robust multi-processing split-and-merge architecture. Each worker executes a `f.seek()` to a coarse chunk boundary, then scans backward for `\\n` to automatically calibrate the record boundary. This ensures zero data loss and zero duplicate processing across worker boundaries.
+* **Reverse Seek Line Alignment**: Implements a robust multi-processing split-and-merge architecture. Each worker executes a `f.seek()` to a coarse chunk boundary, then scans backward for `\n` to automatically calibrate the record boundary. This ensures zero data loss and zero duplicate processing across worker boundaries.
 
 
 
